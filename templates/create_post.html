@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Create New Post{% endblock %}
+
+{% block head %}
+{{ super() }}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        height: 500,
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+        image_upload_url: '/upload_image',
+        file_picker_types: 'image media',
+        file_picker_callback: function (callback, value, meta) {
+            if (meta.filetype === 'image') {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.onchange = function () {
+                    const file = this.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        callback(reader.result, {
+                            alt: file.name
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            }
+        }
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Create New Blog Post</h1>
+<form method="POST" action="{{ url_for('new_post') }}" enctype="multipart/form-data">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea>
+    </div>
+    <div>
+        <label for="file">Upload Image:</label>
+        <input type="file" id="file" name="file" accept="image/*">
+    </div>
+    <button type="submit">Create Post</button>
+</form>
+{% endblock %}

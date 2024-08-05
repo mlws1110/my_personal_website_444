@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <p class="date">Posted on: {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+    <div class="content">
+        {{ post.content | safe }}
+    </div>
+    {% for image in post.images %}
+        <img src="{{ image.image_url }}" alt="Image for {{ post.title }}">
+    {% endfor %}
+</article>
+{% endblock %}
