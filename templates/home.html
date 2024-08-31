@@ -1,55 +1,108 @@
 {% extends "layout.html" %}
 
-{% block title %}Home - My Personal Website{% endblock %}
+{% block title %}Welcome to My Tech Exploration Hub{% endblock %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/matrix.css') }}">
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+    .grid-item {
+        background-color: #2c2c2c;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+    .grid-item:hover {
+        transform: translateY(-5px);
+    }
+    .grid-item h2 {
+        color: #4CAF50;
+        margin-top: 0;
+    }
+    .grid-item a {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .grid-item a:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<h1>Welcome to My Personal Website</h1>
-<p>Here you'll find information about me, my projects, blog, and chatbot.</p>
+<div id="matrix-loading">
+    <canvas id="matrix-canvas"></canvas>
+    <div id="loading-message">
+        <h2>Are you ready for the AI Revolution?</h2>
+        <p>Prepare to dive into the future of technology...</p>
+    </div>
+</div>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p>I'm a passionate developer with expertise in web technologies and artificial intelligence. My goal is to create innovative solutions that make a positive impact.</p>
-    <ul>
-        <li>🚀 Full-stack developer</li>
-        <li>🤖 AI enthusiast</li>
-        <li>📚 Lifelong learner</li>
-        <li>🌱 Open source contributor</li>
-    </ul>
-</section>
+<div id="main-content" style="opacity: 0; transition: opacity 1s ease-in;">
+    <h1 class="graffiti-title">Welcome to My Tech Exploration Hub</h1>
 
-<section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <h3>Personal Blog</h3>
-            <p>A platform where I share my thoughts and experiences on technology and development.</p>
-            <a href="{{ url_for('blog') }}" class="cta-button">Read Blog</a>
+    <section id="intro">
+        <p>Discover the latest in fintech, AI, and cutting-edge tools. Stay informed and ride the wave of technological innovation!</p>
+    </section>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>Blog</h2>
+            <p>Explore our latest articles and insights.</p>
+            <a href="{{ url_for('blog') }}">Read Blog</a>
         </div>
-        <div class="project-card">
-            <h3>AI Chatbot</h3>
-            <p>An interactive chatbot powered by machine learning to answer questions and provide assistance.</p>
-            <a href="{{ url_for('chatbot') }}" class="cta-button">Try Chatbot</a>
+        <div class="grid-item">
+            <h2>Tools</h2>
+            <p>Discover cutting-edge AI tools and resources.</p>
+            <a href="{{ url_for('tools') }}">Explore Tools</a>
+        </div>
+        <div class="grid-item">
+            <h2>Projects</h2>
+            <p>Check out our ongoing and completed projects.</p>
+            <a href="{{ url_for('projects') }}">View Projects</a>
+        </div>
+        <div class="grid-item">
+            <h2>Chatbot</h2>
+            <p>Interact with our AI-powered chatbot.</p>
+            <a href="{{ url_for('chatbot') }}">Chat Now</a>
+        </div>
+        <div class="grid-item">
+            <h2>Contact</h2>
+            <p>Get in touch with us for inquiries or collaborations.</p>
+            <a href="{{ url_for('contact') }}">Contact Us</a>
+        </div>
+        <div class="grid-item">
+            <h2>Tip Jar</h2>
+            <p>Support our work and help us create more content.</p>
+            <a href="{{ url_for('tip_jar') }}">Leave a Tip</a>
         </div>
     </div>
-</section>
+</div>
+{% endblock %}
 
-<section id="skills">
-    <h2>Skills</h2>
-    <ul class="skills-list">
-        <li>Python</li>
-        <li>JavaScript</li>
-        <li>HTML/CSS</li>
-        <li>Flask</li>
-        <li>React</li>
-        <li>SQL</li>
-        <li>Machine Learning</li>
-        <li>Git</li>
-    </ul>
-</section>
-
-<section id="contact">
-    <h2>Get in Touch</h2>
-    <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-    <a href="mailto:your.email@example.com" class="cta-button">Contact Me</a>
-</section>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/matrix.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.getElementById('matrix-loading').style.opacity = 0;
+            document.getElementById('main-content').style.opacity = 1;
+            setTimeout(() => {
+                document.getElementById('matrix-loading').style.display = 'none';
+            }, 1000);
+        }, 5000);
+    });
+</script>
 {% endblock %}

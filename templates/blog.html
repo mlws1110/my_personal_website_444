@@ -10,6 +10,7 @@
     <article class="blog-post">
         <h2><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
         <p class="date">Posted on: {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+        <p class="category">Category: {{ post.category }}</p>
         <div class="content">
             {{ post.content[:200] | safe }}...
         </div>
