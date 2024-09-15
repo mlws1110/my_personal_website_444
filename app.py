@@ -124,6 +124,7 @@ def upload_image():
 
 @app.route('/chatbot')
 def chatbot():
+    # Logic for the chatbot page
     return render_template('chatbot.html')
 
 @app.route('/chatbot/ask', methods=['POST'])
@@ -159,8 +160,6 @@ def contact():
         return redirect(url_for('contact'))
     
     return render_template('contact.html')
-
-CASHAPP_HANDLE = '$Green1110'  # Your actual Cash App handle
 
 @app.route('/tip-jar')
 def tip_jar():
@@ -238,11 +237,19 @@ def get_tools_list():
     ]
 
 def get_projects_list():
-    # This is a placeholder. In a real application, you'd fetch this from a database.
     return [
         {"name": "Personal Blog", "description": "A Flask-based blog application", "link": "/blog"},
         {"name": "AI Chatbot", "description": "An AI-powered chatbot using OpenAI's GPT", "link": "/chatbot"},
-        {"name": "Fintech Analysis Tool", "description": "A tool for analyzing financial data", "link": "#"},
+        {
+            "name": "Budget Tool",
+            "description": "A comprehensive budget planner and financial analysis tool that helps users manage their income, track expenses, set financial goals, and project investment outcomes effectively.",
+            "link": "https://mlws1110.github.io/budget_tool/"
+        },
+        {
+            'name': 'Flask Chatbot',
+            'description': 'An intelligent chatbot built with Flask, enabling real-time user interactions and support. Engage with users seamlessly and provide instant responses to their queries.',
+            'link': 'https://flask-chatbot-chi.vercel.app/'
+        }
     ]
 
 if __name__ == '__main__':

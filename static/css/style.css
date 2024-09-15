@@ -8,6 +8,9 @@ body {
 }
 
 .main-content {
+    padding-top: 60px; /* Space for the fixed brand name and menu */
+    padding-left: 80px; /* Added padding to prevent content from being too close to the left */
+    padding-right: 20px; /* Optional: Add padding to the right for better spacing */
     transition: margin-left 0.3s ease;
     min-height: 100vh;
     display: flex;
@@ -32,6 +35,17 @@ header {
     font-size: 1.5em;
     font-weight: bold;
     margin-left: 50px; /* Add space to the left of the logo */
+}
+
+/* Brand Name Styling */
+.brand-name {
+    position: fixed;
+    left: 60px; /* Positioned to the right of the hamburger menu */
+    top: 20px;
+    color: #ecf0f1;
+    font-size: 1.5em;
+    font-weight: bold;
+    z-index: 1001; /* Ensure it's above the sidebar */
 }
 
 #menu-toggle {
@@ -162,6 +176,30 @@ footer {
     .grid-container {
         grid-template-columns: 1fr;
     }
+
+    .main-content {
+        padding-left: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .brand-name {
+        left: 50px; /* Adjusted position for smaller screens */
+    }
+
+    #menu-toggle {
+        left: 10px; /* Adjusted position for smaller screens */
+    }
+
+    .sidebar {
+        width: 200px; /* Reduced width for smaller screens */
+    }
+
+    .main-content.shifted {
+        margin-left: 200px; /* Adjusted shift to match sidebar width */
+    }
+
+    .main-content {
+        padding-left: 20px; /* Further padding adjustments */
+    }
 }
 
 /* Animations */
@@ -202,3 +240,88 @@ footer {
     transform: rotate(-5deg);
     margin-bottom: 30px;
 }
+
+/* Contact Form Styling */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert.error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* ... existing styles ... */
+
+.coming-soon {
+    background-color: #1a1a1a;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 40px 0;
+}
+
+.coming-soon h2 {
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+.coming-soon p {
+    color: #e0e0e0;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.coming-soon .cta-button {
+    background-color: #FFD700;
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.coming-soon .cta-button:hover {
+    background-color: #FFC300;
+}
+
+/* Remove or update styles related to the subscribe form/button if present */
